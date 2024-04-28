@@ -8335,6 +8335,10 @@ func (m *Schema) ToRawInfo() *yaml.Node {
 			info.Content = append(info.Content, item.Value.ToRawInfo())
 		}
 	}
+	if m.Const != nil {
+		info.Content = append(info.Content, compiler.NewScalarNodeForString("const"))
+		info.Content = append(info.Content, m.Const.ToRawInfo())
+	}
 	return info
 }
 
